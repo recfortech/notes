@@ -1,0 +1,2 @@
+recfortech@Linux:~/meme_generator$ kubectl logs memeflask
+python: can't open file '/home/recfortech/meme_generator/meme-flask.py': [Errno 2] No such file or directory
