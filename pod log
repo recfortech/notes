@@ -1,0 +1,64 @@
+recfortech@Linux:~/meme_generator$ kubectl describe pod memeflask
+Name:             memeflask
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             myprofile/192.168.58.2
+Start Time:       Wed, 25 Nov 2026 04:32:03 -0600
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.12
+IPs:
+  IP:  10.244.0.12
+Containers:
+  meme-flask-container:
+    Container ID:  containerd://3f9b29b73fedb0737f45514494bfd5efa1d3499639f19e5b33b84c5de5cb4f42
+    Image:         meme-flask:latest
+    Image ID:      sha256:6474854f99842d8760c8c0eae823c539acaa5326f78161e1565232387f065acc
+    Port:          5000/TCP
+    Host Port:     0/TCP
+    Command:
+      python
+      meme-flask.py
+    State:          Terminated
+      Reason:       Error
+      Exit Code:    2
+      Started:      Wed, 25 Nov 2026 04:33:37 -0600
+      Finished:     Wed, 25 Nov 2026 04:33:37 -0600
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    2
+      Started:      Wed, 25 Nov 2026 04:32:42 -0600
+      Finished:     Wed, 25 Nov 2026 04:32:42 -0600
+    Ready:          False
+    Restart Count:  4
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-68n7c (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-68n7c:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                  From               Message
+  ----     ------     ----                 ----               -------
+  Normal   Scheduled  2m20s                default-scheduler  Successfully assigned default/memeflask to myprofile
+  Normal   Pulled     46s (x5 over 2m20s)  kubelet            Container image "meme-flask:latest" already present on machine and can be accessed by the pod
+  Normal   Created    46s (x5 over 2m19s)  kubelet            Container created
+  Normal   Started    46s (x5 over 2m19s)  kubelet            Container started
+  Warning  BackOff    46s (x4 over 2m18s)  kubelet            Back-off restarting failed container meme-flask-container in pod memeflask_default(e8b9b5b5-b20c-48af-9f48-84a383a67c51)
