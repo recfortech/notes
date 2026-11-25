@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memeflask
+  labels:
+    app: meme-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meme-flask
+  template:
+    metadata:
+      labels:
+        app: meme-flask
+    spec:
+      containers:
+        - name: meme-flask-container
+          image: meme-flask:v2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
