@@ -1,0 +1,8 @@
+FROM registry.redhat.io/ubi9/python-311-minimal:latest
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY --chown=1001:0 . .
+USER 1001
+EXPOSE 5000
+CMD ["sh", "-c", "exec gunicorn --bind ${POD_IP}:5000 app:app"]
